@@ -18,6 +18,9 @@ export function Dashboard({role}){
     const [modalDispo, setModalDispo] = useState(null);
     const meses = ["Enero", "Febrero", "Marzo", "Abril","Mayo", "Junio", "Julio", "Agosto", "Septiembre",
         "Octubre", "Noviembre", "Diciembre"];
+    const estadoClass = {PENDING: "text-yellow-400", RESERVED: "text-blue-400", FINISHED: "text-green-400",
+        CANCELLED: "text-red-400"};
+    const estados = {PENDING: "Pendiente", RESERVED: "Reservado", FINISHED: "Finalizado", CANCELLED: "Cancelado"};
     const turnosDelDia = appointments
         .filter(a => {
             if (!a.startDate || a.status === "CANCELLED") return false;
@@ -165,9 +168,9 @@ export function Dashboard({role}){
                                         ${esSeleccionado ? 'bg-blue-500 text-white' : ''}
                                         ${esHoy && !esSeleccionado ? 'text-blue-400 font-bold' : 'text-zinc-300'}
                                         hover:bg-zinc-700`}>{dia}{tieneTurno && !esSeleccionado &&
-                                        <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1
+                                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1
                                         bg-blue-400 rounded-full"/>
-                                    }
+                                }
                                 </button>
                             )
                         })}
@@ -184,12 +187,6 @@ export function Dashboard({role}){
                 <div>
                     {turnosDelDia.map((a, i) => {
                         const hora = new Date(a.startDate);
-                        const estadoClass = {
-                            PENDING: "text-yellow-400",
-                            RESERVED: "text-blue-400",
-                            FINISHED: "text-green-400",
-                            CANCELLED: "text-red-400"
-                        };
                         const fueraDeDisponibilidad = a.status === "RESERVED" && !availability.some(av => {
                             const avStart = new Date(av.startDate);
                             const avEnd = new Date(av.endDate);
@@ -212,7 +209,8 @@ export function Dashboard({role}){
                                         <span className="text-red-400 text-xs">⚠️ Requiere cambio de horario</span>
                                     )}
                                 </div>
-                                <span className={`text-xs font-medium ${estadoClass[a.status]}`}>{a.status}</span>
+                                <span className={`text-xs font-medium ${estadoClass[a.status]}`}>
+                                    {estados[a.status]}</span>
                             </div>
                         )
                     })}
