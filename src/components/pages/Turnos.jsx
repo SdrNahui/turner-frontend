@@ -152,7 +152,7 @@ export function Turnos({role}) {
             {role === 'ADMIN' && (
                 <div className="bg-zinc-800 rounded-xl p-4 mb-4">
                     <p className="text-zinc-400 text-xs uppercase tracking-widest mb-3">Crear turno</p>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex flex-col md:flex-row gap-2 md:items-center">
                         <select value={clienteId} onChange={handleClienteChange}
                                 className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm flex-1">
                             <option value="">-- Cliente nuevo --</option>
@@ -163,17 +163,17 @@ export function Turnos({role}) {
                         <input value={nombre}
                                onChange={e => setNombre(e.target.value)}
                                disabled={!!clienteId} placeholder="Nombre"
-                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-32
+                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-full md:w-32
                            disabled:opacity-50"/>
                         <input value={apellido}
                                onChange={e => setApellido(e.target.value)}
                                disabled={!!clienteId} placeholder="Apellido"
-                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-32
+                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-full md:w-32
                            disabled:opacity-50"/>
                         <input value={telefono}
                                onChange={e => setTelefono(e.target.value)}
                                disabled={!!clienteId} placeholder="Teléfono"
-                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-32
+                               className="bg-zinc-700 text-zinc-300 rounded-lg px-3 py-2 text-sm w-full md:w-32
                            disabled:opacity-50"/>
                         <select value={servicio}
                                 onChange={e => setServicio(e.target.value)}
@@ -185,9 +185,7 @@ export function Turnos({role}) {
                         </select>
                         <button onClick={handleCrear}
                                 className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 text-sm
-                            transition-colors whitespace-nowrap">
-                            Crear
-                        </button>
+                            transition-colors whitespace-nowrap w-full md:w-auto">Crear</button>
                     </div>
                 </div>
             )}
@@ -217,54 +215,45 @@ export function Turnos({role}) {
                                     </div>
                                     <span className="text-xs text-zinc-400">{estados[a.status]}</span>
                                 </div>
-                                <div className="flex gap-2 mt-3">
+                                <div className="flex flex-col sm:flex-row gap-2 mt-3 sm:items-center">
                                     {role === 'ADMIN' && a.status === "PENDING" && (
                                         <>
                                             <input type="datetime-local"
                                                    className="bg-zinc-700 text-zinc-300 rounded-lg px-2 py-1 text-xs
-                                                    flex-1"
+                                                    w-full sm:flex-1"
                                                    id={`fecha-${a.id}`}/>
                                             <label className="text-zinc-300 text-xs flex items-center gap-1">
-                                                <input type="checkbox" id={`domicilio-${a.id}`}/> Domicilio
-                                            </label>
+                                                <input type="checkbox" id={`domicilio-${a.id}`}/> Domicilio </label>
                                             <button onClick={() => {
                                                 const f = document.getElementById(`fecha-${a.id}`).value;
                                                 const h = document
                                                     .getElementById(`domicilio-${a.id}`).checked;
                                                 handleConfirmar(a.id, f, h);
                                             }} className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-3
-                                            py-1 text-xs">
-                                                Confirmar
-                                            </button>
+                                            py-1 text-xs w-full sm:w-auto">Confirmar</button>
                                         </>
                                     )}
                                     {role === 'ADMIN' && a.status === "RESERVED" && (
                                         <>
                                             <input type="datetime-local"
                                                    className="bg-zinc-700 text-zinc-300 rounded-lg px-2 py-1 text-xs
-                                                   flex-1"
+                                                   w-full sm:flex-1"
                                                    id={`reorganize-${a.id}`}/>
                                             <button onClick={() => {
                                                 const f =
                                                     document.getElementById(`reorganize-${a.id}`).value;
                                                 handleReorganizar(a.id, f);
                                             }} className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg
-                                            px-3 py-1 text-xs">
-                                                Reorganizar
-                                            </button>
+                                            px-3 py-1 text-xs w-full sm:w-auto">Reorganizar</button>
                                             <button onClick={() => handleFinalizar(a.id, a.clientName)}
                                                     className="bg-green-600 hover:bg-green-700 text-white
-                                                    rounded-lg px-3 py-1 text-xs">
-                                                Finalizar
-                                            </button>
+                                                    rounded-lg px-3 py-1 text-xs w-full sm:w-auto">Finalizar</button>
                                         </>
                                     )}
                                     {role === 'ADMIN' && (a.status === "PENDING" || a.status === "RESERVED") && (
                                         <button onClick={() => handleCancelar(a.id, a.clientName)}
                                                 className="bg-red-600 hover:bg-red-700 text-white rounded-lg px-3
-                                                py-1 text-xs">
-                                            Cancelar
-                                        </button>
+                                                py-1 text-xs w-full sm:w-auto">Cancelar</button>
                                     )}
                                 </div>
                             </div>
