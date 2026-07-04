@@ -69,7 +69,7 @@ export function Dashboard({role}){
                     </div>
                 </div>
             )}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Disponibilidad */}
                 <div className="bg-zinc-800 rounded-xl p-4">
                     <p className="text-zinc-400 text-xs uppercase tracking-widest mb-3">Disponibilidad</p>

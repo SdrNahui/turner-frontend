@@ -54,7 +54,7 @@ export function ModalDispo({bloque, onClose, onRefresh}) {
 
             {/* Modal */}
             <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                bg-zinc-800 rounded-xl p-6 z-50 w-80">
+                bg-zinc-800 rounded-xl p-6 z-50 w-[90vw] max-w-sm">
                 {toast && <Toast message={toast.message} type={toast.type} onClose={hideToast}/>}
                 <p className="text-zinc-400 text-xs uppercase tracking-widest mb-4"> Editar disponibilidad </p>
                 <div className="flex flex-col gap-3 mb-4">
