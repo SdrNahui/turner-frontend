@@ -24,14 +24,3 @@ export async function changePassword(body) {
     if (!res.ok) throw new Error('Contraseña actual incorrecta');
     return res.text();
 }
-
-//1..105 | ForEach-Object {
-// >>     try {
-// >>         $res = Invoke-WebRequest -Method Post -Uri "http://localhost:8080/turner/auth/login" -ErrorAction Stop
-// >>         $status = $res.StatusCode
-// >>     } catch {
-// >>         # Si el servidor responde con error (401, 429), capturamos el status acá
-// >>         $status = [int]$_.Exception.Response.StatusCode
-// >>     }
-// >>     Write-Host "Intento $_ : Status $status"
-// >> }
