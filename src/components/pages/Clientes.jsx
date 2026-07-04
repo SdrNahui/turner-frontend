@@ -18,7 +18,7 @@ export function Clientes({role}){
             return;
         }
         try {
-            await createClient({clientName: nombre, clientLastName: apellido, phoneNumber: telefono});
+            await createClient({clientName: nombre, lastName: apellido, phoneNumber: telefono});
             showToast("Cliente añadido");
             refetch();
             setNombre('');
