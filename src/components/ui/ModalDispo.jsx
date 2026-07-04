@@ -74,16 +74,13 @@ export function ModalDispo({bloque, onClose, onRefresh}) {
                 <div className="flex flex-col gap-2">
                     <button onClick={handleGuardar}
                             className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 text-sm">
-                        Guardar
-                    </button>
+                        Guardar</button>
                     <button onClick={onClose}
                             className="bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg px-4 py-2 text-sm">
-                        Cancelar
-                    </button>
+                        Cancelar</button>
                     <button onClick={handleEliminar}
                             className="bg-red-600 hover:bg-red-700 text-white rounded-lg px-4 py-2 text-sm">
-                        Dar de baja
-                    </button>
+                        Dar de baja</button>
                 </div>
             </div>
         </>

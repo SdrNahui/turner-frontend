@@ -29,7 +29,7 @@ export function ReportDay({ diaSeleccionado}){
     }, [diaSeleccionado]);
     if(loading) return <div className="text-zinc-400 text-sm">Cargando reporte...</div>
     return (
-        <div className="grid grid-cols-4 gap-4 mt-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             <div className="bg-zinc-800 rounded-xl p-4">
                 <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2">Ingresos brutos</p>
                 <p className="text-white text-xl font-medium">{formaterPrice(report.totalGross)}</p>
